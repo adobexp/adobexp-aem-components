@@ -86,10 +86,44 @@
                             <generateJavaClasses>true</generateJavaClasses>
                             <generatedJavaClassesPrefix>org.apache.sling.scripting.sightly</generatedJavaClassesPrefix>
                             <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+                            <!--
+                              We keep failOnWarnings=true (in the parent POM), so we must explicitly allow the
+                              HTL "@" option names used in this codebase (template parameters + data-sly-resource options).
+                            -->
                             <allowedExpressionOptions>
+                                <allowedExpressionOption>action</allowedExpressionOption>
+                                <allowedExpressionOption>appendPath</allowedExpressionOption>
+                                <allowedExpressionOption>async</allowedExpressionOption>
+                                <allowedExpressionOption>categories</allowedExpressionOption>
+                                <allowedExpressionOption>classAppend</allowedExpressionOption>
+                                <allowedExpressionOption>clientLibCategories</allowedExpressionOption>
+                                <allowedExpressionOption>clientLibCategoriesJsHead</allowedExpressionOption>
+                                <allowedExpressionOption>components</allowedExpressionOption>
+                                <allowedExpressionOption>container</allowedExpressionOption>
+                                <allowedExpressionOption>context</allowedExpressionOption>
+                                <allowedExpressionOption>crossorigin</allowedExpressionOption>
                                 <allowedExpressionOption>cssClassName</allowedExpressionOption>
                                 <allowedExpressionOption>decoration</allowedExpressionOption>
                                 <allowedExpressionOption>decorationTagName</allowedExpressionOption>
+                                <allowedExpressionOption>defer</allowedExpressionOption>
+                                <allowedExpressionOption>designPath</allowedExpressionOption>
+                                <allowedExpressionOption>emptyTextAppend</allowedExpressionOption>
+                                <allowedExpressionOption>format</allowedExpressionOption>
+                                <allowedExpressionOption>hasCloudconfigSupport</allowedExpressionOption>
+                                <allowedExpressionOption>isEmpty</allowedExpressionOption>
+                                <allowedExpressionOption>item</allowedExpressionOption>
+                                <allowedExpressionOption>join</allowedExpressionOption>
+                                <allowedExpressionOption>media</allowedExpressionOption>
+                                <allowedExpressionOption>onload</allowedExpressionOption>
+                                <allowedExpressionOption>page</allowedExpressionOption>
+                                <allowedExpressionOption>path</allowedExpressionOption>
+                                <allowedExpressionOption>pwa</allowedExpressionOption>
+                                <allowedExpressionOption>redirectTarget</allowedExpressionOption>
+                                <allowedExpressionOption>resourceType</allowedExpressionOption>
+                                <allowedExpressionOption>selectors</allowedExpressionOption>
+                                <allowedExpressionOption>staticDesignPath</allowedExpressionOption>
+                                <allowedExpressionOption>teaser</allowedExpressionOption>
+                                <allowedExpressionOption>title</allowedExpressionOption>
                                 <allowedExpressionOption>wcmmode</allowedExpressionOption>
                             </allowedExpressionOptions>
                         </configuration>
