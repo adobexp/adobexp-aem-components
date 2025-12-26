@@ -19,16 +19,12 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.factory.ModelFactory;
 import org.jetbrains.annotations.Nullable;
 
-import com.adobe.cq.export.json.ComponentExporter;
-import com.adobe.cq.export.json.ContainerExporter;
-import com.adobe.cq.export.json.ExporterConstants;
 import com.adobexp.aem.core.components.models.ExperienceFragment;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
@@ -39,9 +35,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * Experience Fragment model implementation.
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = {ExperienceFragment.class, ComponentExporter.class, ContainerExporter.class },
+    adapters = {ExperienceFragment.class},
     resourceType = { ExperienceFragmentImpl.RESOURCE_TYPE_V2 })
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 public class ExperienceFragmentImpl implements ExperienceFragment {
 
     /**

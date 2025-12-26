@@ -21,7 +21,6 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
@@ -29,8 +28,6 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.jetbrains.annotations.Nullable;
 
-import com.adobe.cq.export.json.ComponentExporter;
-import com.adobe.cq.export.json.ExporterConstants;
 import com.adobexp.aem.core.components.commons.link.Link;
 import com.adobexp.aem.core.components.internal.Heading;
 import com.adobexp.aem.core.components.commons.link.LinkManager;
@@ -42,9 +39,8 @@ import com.day.cq.wcm.api.designer.Style;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Model(adaptables = SlingHttpServletRequest.class,
-       adapters = {Title.class, ComponentExporter.class},
+       adapters = {Title.class},
        resourceType = {TitleImpl.RESOURCE_TYPE_V1})
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 public class TitleImpl implements Title {
 
     protected static final String RESOURCE_TYPE_V1 = "adobexp/components/title/v1/title";

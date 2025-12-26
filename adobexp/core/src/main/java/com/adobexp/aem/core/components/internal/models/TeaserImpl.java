@@ -31,7 +31,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
@@ -43,8 +42,6 @@ import org.apache.sling.models.factory.ModelFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.adobe.cq.export.json.ComponentExporter;
-import com.adobe.cq.export.json.ExporterConstants;
 import com.adobexp.aem.core.components.commons.link.Link;
 import com.adobexp.aem.core.components.internal.Heading;
 import com.adobexp.aem.core.components.commons.link.LinkManager;
@@ -72,8 +69,7 @@ import static com.adobexp.aem.core.components.util.ComponentUtils.ID_SEPARATOR;
 /**
  * Teaser model implementation.
  */
-@Model(adaptables = SlingHttpServletRequest.class, adapters = {Teaser.class, ComponentExporter.class}, resourceType = TeaserImpl.RESOURCE_TYPE)
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME , extensions = ExporterConstants.SLING_MODEL_EXTENSION)
+@Model(adaptables = SlingHttpServletRequest.class, adapters = {Teaser.class}, resourceType = TeaserImpl.RESOURCE_TYPE)
 public class TeaserImpl extends AbstractImageDelegatingModel implements Teaser {
 
     /**

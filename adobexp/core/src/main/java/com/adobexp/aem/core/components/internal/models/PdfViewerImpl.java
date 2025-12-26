@@ -23,22 +23,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.caconfig.ConfigurationBuilder;
-import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import com.adobe.cq.export.json.ComponentExporter;
-import com.adobe.cq.export.json.ExporterConstants;
 import com.adobexp.aem.core.components.internal.services.pdfviewer.PdfViewerCaConfig;
 import com.adobexp.aem.core.components.models.PdfViewer;
 import org.jetbrains.annotations.Nullable;
 
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { PdfViewer.class, ComponentExporter.class },
+    adapters = { PdfViewer.class },
     resourceType = { PdfViewerImpl.RESOURCE_TYPE })
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 public class PdfViewerImpl implements PdfViewer {
 
     protected static final String RESOURCE_TYPE = "adobexp/components/pdfviewer/v1/pdfviewer";

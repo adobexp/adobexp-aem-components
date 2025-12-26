@@ -7,5 +7,5 @@
         <include pattern="/content/dam/adobexp/jcr:content(/.*)?"/>
     </filter> -->
     <!-- <filter root="/content/dam/adobexp/asset.jpg" mode="update"/> -->
-    <!-- <filter root="/content/experience-fragments/adobexp" mode="merge"/> -->
+    <filter root="/content/experience-fragments/site1" mode="merge"/>
 </workspaceFilter>

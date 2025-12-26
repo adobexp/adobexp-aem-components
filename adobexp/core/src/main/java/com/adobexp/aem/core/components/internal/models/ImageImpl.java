@@ -50,7 +50,6 @@ import org.apache.sling.api.resource.ResourceMetadata;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.commons.mime.MimeTypeService;
 import org.apache.sling.commons.osgi.PropertiesUtil;
-import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
@@ -64,8 +63,6 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.adobe.cq.export.json.ComponentExporter;
-import com.adobe.cq.export.json.ExporterConstants;
 import com.adobexp.aem.core.components.commons.link.Link;
 import com.adobexp.aem.core.components.commons.link.LinkManager;
 import com.adobexp.aem.core.components.internal.helper.image.AssetDeliveryHelper;
@@ -100,8 +97,7 @@ import java.io.StringReader;
 import static com.adobexp.aem.core.components.models.Teaser.PN_IMAGE_LINK_HIDDEN;
 import static com.adobexp.aem.core.components.internal.Utils.getWrappedImageResourceWithInheritance;
 
-@Model(adaptables = SlingHttpServletRequest.class, adapters = {Image.class, ComponentExporter.class}, resourceType = ImageImpl.RESOURCE_TYPE)
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
+@Model(adaptables = SlingHttpServletRequest.class, adapters = {Image.class}, resourceType = ImageImpl.RESOURCE_TYPE)
 public class ImageImpl implements Image {
 
     public static final String RESOURCE_TYPE = "adobexp/components/image/v1/image";

@@ -37,7 +37,6 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -49,8 +48,6 @@ import org.apache.sling.models.factory.ModelFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.adobe.cq.export.json.ContainerExporter;
-import com.adobe.cq.export.json.ExporterConstants;
 import com.adobe.cq.export.json.SlingModelFilter;
 import org.apache.sling.caconfig.ConfigurationBuilder;
 import org.apache.sling.caconfig.ConfigurationResolver;
@@ -66,6 +63,7 @@ import com.adobexp.aem.core.components.models.HtmlPageItem;
 import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.NameConstants;
 import com.day.cq.wcm.api.Template;
+import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.designer.Design;
 import com.day.cq.wcm.api.designer.Designer;
 import com.day.cq.wcm.api.designer.Style;
@@ -78,9 +76,15 @@ import com.adobe.granite.ui.clientlibs.LibraryType;
 import com.day.cq.wcm.api.components.ComponentContext;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Model(adaptables = SlingHttpServletRequest.class, adapters = { Page.class,
-        ContainerExporter.class }, resourceType = PageImpl.RESOURCE_TYPE)
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
+@Model(
+        adaptables = SlingHttpServletRequest.class,
+        adapters = { Page.class },
+        resourceType = {
+                PageImpl.RESOURCE_TYPE,
+                "adobexp/components/xfpage",
+                "cq/experience-fragments/components/xfpage"
+        }
+)
 public class PageImpl implements Page {
 
     protected static final String RESOURCE_TYPE = "adobexp/components/page/v1/page";
@@ -91,13 +95,13 @@ public class PageImpl implements Page {
     @SlingObject
     protected Resource resource;
 
-    @ScriptVariable
+    @ScriptVariable(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected com.day.cq.wcm.api.Page currentPage;
 
-    @ScriptVariable
+    @ScriptVariable(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected ValueMap pageProperties;
 
-    @ScriptVariable
+    @ScriptVariable(injectionStrategy = InjectionStrategy.OPTIONAL)
     @JsonIgnore
     protected Design currentDesign;
 
@@ -106,7 +110,7 @@ public class PageImpl implements Page {
     @Nullable
     protected Style currentStyle;
 
-    @ScriptVariable
+    @ScriptVariable(injectionStrategy = InjectionStrategy.OPTIONAL)
     @JsonIgnore
     protected ResourceResolver resolver;
 
@@ -246,9 +250,28 @@ public class PageImpl implements Page {
     @SuppressWarnings("deprecation")
     @PostConstruct
     protected void initModel() {
-        title = currentPage.getTitle();
-        description = currentPage.getDescription();
-        if (StringUtils.isBlank(title)) {
+        // In some render contexts (e.g. XF includes), WCM script variables might not be available.
+        // Make sure we can still initialize a Page model without failing adaptation.
+        if (resolver == null && request != null) {
+            resolver = request.getResourceResolver();
+        }
+        if (currentPage == null && resolver != null) {
+            PageManager pageManager = resolver.adaptTo(PageManager.class);
+            if (pageManager != null && resource != null) {
+                currentPage = pageManager.getContainingPage(resource);
+            }
+        }
+        if (pageProperties == null) {
+            if (currentPage != null) {
+                pageProperties = currentPage.getProperties();
+            } else if (resource != null) {
+                pageProperties = resource.getValueMap();
+            }
+        }
+
+        title = currentPage != null ? currentPage.getTitle() : null;
+        description = currentPage != null ? currentPage.getDescription() : null;
+        if (StringUtils.isBlank(title) && currentPage != null) {
             title = currentPage.getName();
         }
         keywords = new LazyValue<>(() -> buildKeywords());
