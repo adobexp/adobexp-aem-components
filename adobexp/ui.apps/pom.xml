@@ -60,6 +60,11 @@
                             <artifactId>adobexp.ui.apps.structure</artifactId>
                         </repositoryStructurePackage>
                     </repositoryStructurePackages>
+                    <validatorsSettings>
+                        <jackrabbit-filter>
+                            <isDisabled>true</isDisabled>
+                        </jackrabbit-filter>
+                    </validatorsSettings>
                 </configuration>
             </plugin>
             <plugin>
@@ -110,6 +115,7 @@
                                 <allowedExpressionOption>emptyTextAppend</allowedExpressionOption>
                                 <allowedExpressionOption>format</allowedExpressionOption>
                                 <allowedExpressionOption>hasCloudconfigSupport</allowedExpressionOption>
+                                <allowedExpressionOption>internalUrl</allowedExpressionOption>
                                 <allowedExpressionOption>isEmpty</allowedExpressionOption>
                                 <allowedExpressionOption>item</allowedExpressionOption>
                                 <allowedExpressionOption>join</allowedExpressionOption>
