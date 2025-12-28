@@ -11,7 +11,7 @@
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Content Image"
                     sling:resourceType="wcm/core/components/policy/policy"
-                    allowedRenditionWidths="[320,480,600,800,1024,1200,1600]"
+                    allowedRenditionWidths="[320,480,600,800,1024,1200,1600,1920,2560]"
                     disableLazyLoading="false"
                     allowUpload="false"
                     altValueFromDAM="true"
@@ -142,106 +142,19 @@
                     </rtePlugins>
                 </policy_adobexp_cmp_text>
             </text>
-            <experiencefragment jcr:primaryType="nt:unstructured">
-                <policy_header
-                    cq:styleDefaultElement="header"
-                    jcr:description="Sets a &lt;header> element on the page header experience fragment."
-                    jcr:primaryType="nt:unstructured"
-                    jcr:title="Page Header"
-                    sling:resourceType="wcm/core/components/policy/policy">
-                    <jcr:content jcr:primaryType="nt:unstructured"/>
-                </policy_header>
-                <policy_footer
-                    cq:styleDefaultElement="footer"
-                    jcr:description="Sets a &lt;footer> element on the page footer experience fragment."
-                    jcr:primaryType="nt:unstructured"
-                    jcr:title="Page Footer"
-                    sling:resourceType="wcm/core/components/policy/policy">
-                    <jcr:content jcr:primaryType="nt:unstructured"/>
-                </policy_footer>
-            </experiencefragment>
-            <container jcr:primaryType="nt:unstructured">
-                <policy_adobexp_templatetypes_page_root
-                    jcr:description="Allows the template components and defines the component mapping (this configures what components should be automatically created when authors drop assets from the content finder to the page editor)."
-                    jcr:primaryType="nt:unstructured"
-                    jcr:title="ADOBE XP Components - Page Root"
-                    sling:resourceType="wcm/core/components/policy/policy"
-                    components="[group:Adobe XP Components - Content,group:Adobe XP Components - Structure]">
-                    <jcr:content jcr:primaryType="nt:unstructured"/>
-                    <cq:authoring jcr:primaryType="nt:unstructured">
-                        <assetToComponentMapping jcr:primaryType="nt:unstructured">
-                            <mapping_1575024218483
-                                jcr:primaryType="nt:unstructured"
-                                assetGroup="media"
-                                assetMimetype="image/*"
-                                droptarget="image"
-                                resourceType="adobexp/components/image"/>
-                            <mapping_1575030843388
-                                jcr:primaryType="nt:unstructured"
-                                assetGroup="content"
-                                assetMimetype="text/html"
-                                droptarget="experiencefragment"
-                                resourceType="adobexp/components/experiencefragment"/>
-                        </assetToComponentMapping>
-                    </cq:authoring>
-                </policy_adobexp_templatetypes_page_root>
-                <policy_adobexp_templatetypes_page_content
-                    jcr:description="Allows the page components and defines the component mapping (this configures what components should be automatically created when authors drop assets from the content finder to the page editor)."
-                    jcr:primaryType="nt:unstructured"
-                    jcr:title="ADOBE XP Components - Page Content"
-                    sling:resourceType="wcm/core/components/policy/policy"
-                    components="[group:Adobe XP Components - Content]">
-                    <jcr:content jcr:primaryType="nt:unstructured"/>
-                    <cq:authoring jcr:primaryType="nt:unstructured">
-                        <assetToComponentMapping jcr:primaryType="nt:unstructured">
-                            <mapping_1575030255082
-                                jcr:primaryType="nt:unstructured"
-                                assetGroup="media"
-                                assetMimetype="image/*"
-                                droptarget="image"
-                                resourceType="adobexp/components/image"/>
-                            <mapping_1575030260142
-                                jcr:primaryType="nt:unstructured"
-                                assetGroup="content"
-                                assetMimetype="text/html"
-                                droptarget="experiencefragment"
-                                resourceType="adobexp/components/experiencefragment"/>
-                        </assetToComponentMapping>
-                    </cq:authoring>
-                </policy_adobexp_templatetypes_page_content>
-                <policy_adobexp_templates_page_content_mainarea
-                    cq:styleDefaultElement="main"
-                    jcr:description="Sets a &lt;main> element on the page content area."
-                    jcr:primaryType="nt:unstructured"
-                    jcr:title="Page Main"
-                    sling:resourceType="wcm/core/components/policy/policy">
-                    <jcr:content jcr:primaryType="nt:unstructured"/>
-                </policy_adobexp_templates_page_content_mainarea>
-                <policy_adobexp_templatetypes_xf
-                    jcr:description="Allows the template components and defines the component mapping (this configures what components should be automatically created when authors drop assets from the content finder to the page editor)."
-                    jcr:primaryType="nt:unstructured"
-                    jcr:title="ADOBE XP Components - Experience Fragment Root"
-                    sling:resourceType="wcm/core/components/policy/policy"
-                    components="[group:Adobe XP Components - Content,/apps/adobexp/components/form/container]">
-                    <jcr:content jcr:primaryType="nt:unstructured"/>
-                    <cq:authoring jcr:primaryType="nt:unstructured">
-                        <assetToComponentMapping jcr:primaryType="nt:unstructured">
-                            <mapping_1575024218483
-                                jcr:primaryType="nt:unstructured"
-                                assetGroup="media"
-                                assetMimetype="image/*"
-                                droptarget="image"
-                                resourceType="adobexp/components/image"/>
-                            <mapping_1575030843388
-                                jcr:primaryType="nt:unstructured"
-                                assetGroup="content"
-                                assetMimetype="text/html"
-                                droptarget="experiencefragment"
-                                resourceType="adobexp/components/experiencefragment"/>
-                        </assetToComponentMapping>
-                    </cq:authoring>
-                </policy_adobexp_templatetypes_xf>
-            </container>
+            <content jcr:primaryType="nt:unstructured">
+                <responsivegrid jcr:primaryType="nt:unstructured">
+                    <policy_page_content
+                        jcr:lastModified="{Date}2025-12-27T19:06:25.835Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="ADOBE XP | Main Content | Policy"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="group:Adobe XP Components - Content,group:.core-wcm,group:.core-wcm-form">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_page_content>
+                </responsivegrid>
+            </content>
         </components>
     </adobexp>
     <wcm jcr:primaryType="nt:unstructured">
